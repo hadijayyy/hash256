@@ -1,0 +1,25 @@
+name: AEI release artifact
+on:
+  push:
+    branches: [main]
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruct release payload
+        shell: bash
+        run: |
+          cat apple-exec-v4.3/release/chunk*.txt > /tmp/release.b64
+          base64 -d /tmp/release.b64 > /tmp/release.bin
+          file /tmp/release.bin | tee /tmp/release-file.txt
+          sha256sum /tmp/release.bin | tee /tmp/release-sha256.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aei-release
+          path: |
+            /tmp/release.b64
+            /tmp/release.bin
+            /tmp/release-file.txt
+            /tmp/release-sha256.txt
+          retention-days: 1
