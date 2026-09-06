@@ -1,0 +1,8 @@
+{
+  "version": "4.4.1",
+  "chunks": 6,
+  "compressedBase64Length": 20436,
+  "buildSha256": "c8eea2fe6517030a0cee7bd7639a279950fda43085f6610e4d3fb490b0c38f59",
+  "chunkLengths": [3500,3500,3500,3500,3500,2936],
+  "status": "release-candidate"
+}
